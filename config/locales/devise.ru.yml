@@ -1,0 +1,9 @@
+ru:
+  devise:
+    sessions:
+      buttons:
+        sign_in: Войти
+        sign_out: Выйти
+    registrations:
+      buttons:
+        sign_up: Зарегистрироваться

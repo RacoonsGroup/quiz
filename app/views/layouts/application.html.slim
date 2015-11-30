@@ -2,14 +2,19 @@ doctype html
 html
 head
   title Quiz
-  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
-  = csrf_meta_tags
+  =stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  =javascript_include_tag 'application', 'data-turbolinks-track' => true
+  =csrf_meta_tags
 body
   nav.navbar.navbar-inverse
     .container-fluid
       .navbar-header
-        = link_to t('navbar.brand'), root_path, class: 'navbar-brand'
-  .container-fluid
-    = yield
+        =link_to t('navbar.brand'), root_path, class: 'navbar-brand'
+      .collapse.navbar-collapse
+        -if signed_in?
+          ul.nav.navbar-nav.navbar-right
+            li
+              =link_to t('devise.sessions.buttons.sign_out'), destroy_user_session_path, method: :delete
+  .container
+    =yield
 
