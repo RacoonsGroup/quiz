@@ -1,3 +1,11 @@
+PATH
+  remote: ./components/
+  specs:
+    isaac (0.0.1)
+      jquery-rails
+      rails (~> 4.2.5)
+      sass
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -267,6 +275,7 @@ DEPENDENCIES
   factory_girl
   faker
   figaro
+  isaac (= 0.0.1)!
   jbuilder (~> 2.0)
   jquery-rails
   mocha

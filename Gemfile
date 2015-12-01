@@ -20,6 +20,11 @@ gem 'enum_help'
 gem 'figaro'
 gem 'paranoia'
 
+#components
+path './components/' do
+  gem 'isaac', '0.0.1'
+end
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'did_you_mean'
