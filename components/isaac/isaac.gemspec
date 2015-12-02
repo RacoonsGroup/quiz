@@ -24,6 +24,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'sprockets-rails'
   s.add_dependency 'slim-rails'
   s.add_dependency 'simple-navigation-bootstrap'
+  s.add_dependency 'simple_form'
+  s.add_dependency 'cocoon'
 
   s.add_development_dependency 'sqlite3'
 end

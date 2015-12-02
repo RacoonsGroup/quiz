@@ -1,0 +1,8 @@
+=simple_form_for @test do |f|
+  =f.input :name
+  #isaac_metric_tests
+    =f.simple_fields_for :isaac_metric_tests do |isaac_metric_test|
+      =render 'isaac_metric_test_fields', f: isaac_metric_test
+  .links
+    = link_to_add_association 'add metric', f, :isaac_metric_tests
+  =f.submit 'save'

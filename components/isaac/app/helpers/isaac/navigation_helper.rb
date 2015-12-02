@@ -5,8 +5,8 @@ module Isaac
         primary.dom_class = 'nav nav-tabs'
         primary.selected_class = 'active'
 
-        primary.item :key_1_1, t('navbar.tests'), isaac.root_path, class: 'item'
-        primary.item :key_1_2, t('navbar.authors'), '#', class: 'item'
+        primary.item :key_1_1, t('navbar.tests'), isaac.tests_path, class: 'item'
+        primary.item :key_1_2, t('navbar.metrics'), isaac.metrics_path, class: 'item'
       end
     end
   end

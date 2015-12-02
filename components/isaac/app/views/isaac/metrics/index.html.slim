@@ -1,0 +1,23 @@
+=render partial: 'isaac/shared/navbar'
+h2 Metric index page
+
+.container
+  =link_to 'new', new_metric_path, class: 'btn btn-default'
+  table.table
+    thead
+      th name
+      th description
+      th author
+      th actions
+    tbody
+      -@metrics.each do |metric|
+        tr
+          td =metric.name
+          td =metric.description
+          td =metric.author.email
+          td
+            .btn-group
+              =link_to 'show', metric_path(metric), class: 'btn btn-default'
+              =link_to 'edit', edit_metric_path(metric), class: 'btn btn-default'
+              =link_to 'destroy', metric_path(metric), method: :delete, class: 'btn btn-default'
+
