@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202150502) do
+ActiveRecord::Schema.define(version: 20151203104304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(version: 20151202150502) do
 
   add_index "isaac_questions", ["isaac_metric_id"], name: "index_isaac_questions_on_isaac_metric_id", using: :btree
 
+  create_table "isaac_results", force: :cascade do |t|
+    t.integer  "isaac_test_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "probationer_name"
+    t.json     "answers",          default: {}, null: false
+  end
+
+  add_index "isaac_results", ["isaac_test_id"], name: "index_isaac_results_on_isaac_test_id", using: :btree
+
   create_table "isaac_tests", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -106,4 +116,5 @@ ActiveRecord::Schema.define(version: 20151202150502) do
   add_foreign_key "isaac_metric_tests", "isaac_metrics"
   add_foreign_key "isaac_metric_tests", "isaac_tests"
   add_foreign_key "isaac_questions", "isaac_metrics"
+  add_foreign_key "isaac_results", "isaac_tests"
 end

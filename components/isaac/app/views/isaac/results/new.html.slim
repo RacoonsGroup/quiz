@@ -1,0 +1,9 @@
+h2 =@test.name
+=simple_form_for :result_form, url: test_results_path(@test, @result) do |f|
+  -@test_metrics.each do |tm|
+    =f.simple_fields_for :"metric_id_#{tm.id}" do |mf|
+      -tm.isaac_questions.each do |iq|
+        =mf.label iq.body
+        =mf.input :"question_id_#{iq.id}", label: false, as: :radio_buttons,
+                 collection: iq.isaac_answers.map {|a| [a.body, a.id]}
+  =f.submit 'save'
