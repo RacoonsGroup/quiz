@@ -6,6 +6,9 @@ module Isaac
     has_many :isaac_metric_graduations, class_name: Isaac::MetricGraduation, foreign_key: :isaac_metric_id
     has_many :isaac_questions, class_name: Isaac::Question, foreign_key: :isaac_metric_id
 
+    accepts_nested_attributes_for :isaac_metric_graduations
+    accepts_nested_attributes_for :isaac_questions
+
     def self.author_class
       Isaac.author_class.constantize
     end

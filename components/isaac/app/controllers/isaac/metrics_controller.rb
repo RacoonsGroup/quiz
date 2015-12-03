@@ -48,7 +48,12 @@ module Isaac
     private
 
     def metric_params
-      params.require(:metric).permit(:name, :description, :author_id).merge(author_id: current_author.id)
+      params.require(:metric).
+          permit(:name, :description, :author_id,
+                 isaac_metric_graduations_attributes: [:id, :name, :description, :_destroy, :min_value, :max_value],
+                 isaac_questions_attributes: [:id, :body, :_destroy,
+                                              isaac_answers_attributes: [:id, :body, :value, :_destroy]]).
+          merge(author_id: current_author.id)
     end
   end
 end

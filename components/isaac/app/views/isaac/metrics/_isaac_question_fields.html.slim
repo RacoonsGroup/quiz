@@ -1,0 +1,12 @@
+.nested-fields
+  .row
+    .col-md-6
+      =f.input :body
+    .col-md-6
+      #question-answers
+        h4 Answers
+        =f.simple_fields_for :isaac_answers do |isaac_answer|
+          =render 'isaac_answer_fields', f: isaac_answer
+        .links
+          = link_to_add_association 'add answer', f, :isaac_answers
+    =link_to_remove_association 'remove question', f

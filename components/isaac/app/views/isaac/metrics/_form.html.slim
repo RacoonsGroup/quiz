@@ -1,3 +1,18 @@
 =simple_form_for @metric do |f|
   =f.input :name
+  .row
+    .col-md-4
+      #metric-graduations
+        h3 Metric Graduations
+        =f.simple_fields_for :isaac_metric_graduations do |isaac_metric_graduation|
+          =render 'isaac_metric_graduation_fields', f: isaac_metric_graduation
+      .links
+        = link_to_add_association 'add graduation', f, :isaac_metric_graduations
+    .col-md-8
+      #metric-questions
+        h3 Metric Questions
+        =f.simple_fields_for :isaac_questions do |isaac_question|
+          =render 'isaac_question_fields', f: isaac_question
+      .links
+        = link_to_add_association 'add question', f, :isaac_questions
   =f.submit 'save'
