@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202123407) do
+ActiveRecord::Schema.define(version: 20151202150502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "isaac_answers", force: :cascade do |t|
+    t.integer  "isaac_question_id"
+    t.text     "body"
+    t.integer  "value"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "isaac_answers", ["isaac_question_id"], name: "index_isaac_answers_on_isaac_question_id", using: :btree
+
+  create_table "isaac_metric_graduations", force: :cascade do |t|
+    t.integer  "isaac_metric_id"
+    t.string   "name"
+    t.string   "slug"
+    t.integer  "min_value"
+    t.integer  "max_value"
+    t.text     "description"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "isaac_metric_graduations", ["isaac_metric_id"], name: "index_isaac_metric_graduations_on_isaac_metric_id", using: :btree
 
   create_table "isaac_metric_tests", force: :cascade do |t|
     t.integer  "isaac_metric_id"
@@ -34,6 +57,15 @@ ActiveRecord::Schema.define(version: 20151202123407) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "isaac_questions", force: :cascade do |t|
+    t.integer  "isaac_metric_id"
+    t.text     "body"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "isaac_questions", ["isaac_metric_id"], name: "index_isaac_questions_on_isaac_metric_id", using: :btree
 
   create_table "isaac_tests", force: :cascade do |t|
     t.string   "name"
@@ -69,6 +101,9 @@ ActiveRecord::Schema.define(version: 20151202123407) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "isaac_answers", "isaac_questions"
+  add_foreign_key "isaac_metric_graduations", "isaac_metrics"
   add_foreign_key "isaac_metric_tests", "isaac_metrics"
   add_foreign_key "isaac_metric_tests", "isaac_tests"
+  add_foreign_key "isaac_questions", "isaac_metrics"
 end
