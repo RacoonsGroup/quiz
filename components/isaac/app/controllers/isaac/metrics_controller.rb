@@ -5,7 +5,7 @@ module Isaac
     end
 
     def show
-      @metric = Issac::Metric.find(params[:id])
+      @metric = Isaac::Metric.find(params[:id])
     end
 
     def new
